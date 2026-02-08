@@ -5,6 +5,7 @@ import com.gevernova.EmployeePayRoll.DTO.EmployeePayrollDTO;
 import com.gevernova.EmployeePayRoll.Entity.EmployeePayroll;
 import com.gevernova.EmployeePayRoll.Repository.EmployeePayrollRepository;
 import com.gevernova.EmployeePayRoll.globalexception.IdNotFound;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * Service implementation class
  */
 @Service
+@Slf4j
 public class EmployeePayrollServiceImpl implements EmployeePayrollService {
 
     /**
@@ -34,6 +36,7 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
                 .build();
 
         repository.save(employee);
+        log.info("new employee created successfully");
         return "new employee created successfully";
     }
 
@@ -44,6 +47,7 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
     public List<EmployeePayrollDTO> getAllEmployees() {
 
         List<EmployeePayroll> employees=repository.findAll();
+        log.info("all employee fetched successfully");
         return employees.stream()
                 .map(this::transform).toList();
     }
@@ -62,6 +66,7 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
     public EmployeePayrollDTO getEmployeeById(Long id) {
         EmployeePayroll employee=repository.findById(id)
                 .orElseThrow(() -> new IdNotFound("Employee not found with id: " + id));
+        log.info("information fetched for employee with id : "+id);
         return transform(employee);
     }
 
@@ -78,6 +83,7 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
         employee.setDepartment(dto.getDepartment());
 
         repository.save(employee);
+        log.info("employee updated successfully");
         return "employee updated successfully";
     }
 
@@ -86,6 +92,7 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
      */
     @Override
     public void deleteEmployee(Long id) {
+        log.info("employee deleted successfully");
         repository.deleteById(id);
     }
 }
