@@ -11,13 +11,13 @@ import java.util.List;
  */
 public interface EmployeePayrollService {
 
-    EmployeePayroll addEmployee(EmployeePayrollDTO dto);
+    String addEmployee(EmployeePayrollDTO dto);
 
-    List<EmployeePayroll> getAllEmployees();
+    List<EmployeePayrollDTO> getAllEmployees();
 
-    EmployeePayroll getEmployeeById(Long id);
+    EmployeePayrollDTO getEmployeeById(Long id);
 
-    EmployeePayroll updateEmployee(Long id, EmployeePayrollDTO dto);
+    String updateEmployee(Long id, EmployeePayrollDTO dto);
 
     void deleteEmployee(Long id);
 }

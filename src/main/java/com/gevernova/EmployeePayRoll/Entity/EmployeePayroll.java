@@ -2,12 +2,18 @@ package com.gevernova.EmployeePayRoll.Entity;
 
 
 import jakarta.persistence.*;
+import lombok.*;
 
 /**
  * Entity class representing Employee Payroll table
  */
 @Entity
 @Table(name = "employee_payroll")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
 public class EmployeePayroll {
 
     /**
@@ -32,49 +38,6 @@ public class EmployeePayroll {
      */
     private String department;
 
-    // Default constructor (required by JPA)
-    public EmployeePayroll() {}
 
-    // Parameterized constructor
-    public EmployeePayroll(Long id, String name, double salary, String department) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
-        this.department = department;
-    }
-
-    // ---------- Getters & Setters ----------
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
 }
 
